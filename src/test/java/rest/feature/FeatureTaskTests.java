@@ -3,51 +3,32 @@ package rest.feature;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import model.Post;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class FeatureTaskTests {
 
-    @Test
-    @Tag("smоke")
-    public void getFirstPostTest() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
-        RequestSpecification httpRequest = RestAssured.given();
-        Response response = httpRequest.get("/posts/1");
-        Assertions.assertEquals(200, response.getStatusCode());
-        ResponseBody responseBody = response.getBody();
-        Assertions.assertEquals("""
-                {
-                  "userId": 1,
-                  "id": 1,
-                  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-                  "body": "quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto"
-                }""", responseBody.asString());
-    }
-
-    @Test
-    @Tag("smoke")
-    public void allFields() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
-        RequestSpecification httpRequest = RestAssured.given();
-        Response response = httpRequest.get("/posts/1");
-        Assertions.assertEquals(200, response.getStatusCode());
-        JsonPath jsonPathEvaluator = response.jsonPath();
-        Integer userId = jsonPathEvaluator.get("userId");
-        Integer id = jsonPathEvaluator.get("id");
-        String Title = jsonPathEvaluator.get("title");
-        String Body = jsonPathEvaluator.get("body");
-        Assertions.assertEquals(1, userId);
-        Assertions.assertEquals(1, id);
-        Assertions.assertEquals(Title, "sunt aut facere repellat provident occaecati excepturi optio reprehenderit");
-        Assertions.assertEquals(Body, "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto");
-    }
+    /*
+    * Необходимо написать тест, который забирает все данные по endpoint: /posts/1
+    * и сверяет данные с ожидаемым результатом.
+    * В качестве ожидаемоего результата выступают следующие данные:
+    *    userId = 1
+    *    id = 1
+    *    title = sunt aut facere repellat provident occaecati excepturi optio reprehenderit
+    *    body = quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto
+    *
+    * Задания:
+    *    - Тест должен запускаться в любой день недели, кроме дня, когда происходит собеседование (если сегодня вторник, то отключаем вторник)
+    *    - Тест должен быть помечен как smoke
+    *
+    * Данный тест можно писать под любой тестовый фреймворк: JUnit, TestNG ...
+    * (при использовании отличного инструмента от JUnit потребуется подключение данного инструмента к проекту)
+    */
 
     @Test
     @Tag("regress")
