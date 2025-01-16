@@ -5,17 +5,22 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import jdk.jfr.Description;
 import model.Post;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class FeatureTaskTests {
 
     @Test
     @Tag("smоke")
+    @EnabledIf("rest.feature.FeatureTaskTests#checkDateCondition")
+    @Description("Тест должен запускаться не раньше 2025 года")
     public void getFirstPostTest() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RequestSpecification httpRequest = RestAssured.given();
@@ -97,5 +102,10 @@ public class FeatureTaskTests {
             isTrue = true;
         }
         Assertions.assertTrue(isTrue);
+    }
+
+    private boolean checkDateCondition() {
+        LocalDate today = LocalDate.now();
+        return today.isBefore(LocalDate.of(2024, 12, 31));
     }
 }
