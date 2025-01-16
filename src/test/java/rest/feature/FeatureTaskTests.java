@@ -7,13 +7,15 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import model.Post;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class FeatureTask {
+public class FeatureTaskTests {
 
     @Test
+    @Tag("smоke")
     public void getFirstPostTest() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RequestSpecification httpRequest = RestAssured.given();
@@ -30,6 +32,7 @@ public class FeatureTask {
     }
 
     @Test
+    @Tag("smoke")
     public void allFields() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RequestSpecification httpRequest = RestAssured.given();
@@ -47,6 +50,7 @@ public class FeatureTask {
     }
 
     @Test
+    @Tag("regress")
     void user1Posts() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RequestSpecification httpRequest = RestAssured.given();
@@ -63,6 +67,7 @@ public class FeatureTask {
     }
 
     @Test
+    @Tag("regress")
     void user5Posts() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RequestSpecification httpRequest = RestAssured.given();
@@ -79,6 +84,7 @@ public class FeatureTask {
     }
 
     @Test
+    @Tag("regress")
     public void testFirstTitle() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RequestSpecification httpRequest = RestAssured.given();
